@@ -39,7 +39,7 @@
 * `TCP Fast Open`
   * Allows to send data in SYN packet.
   * Limit on the data being sent.
-* `Congestion`
+* `Congestion Avoidance and Control`
   * In 1984, John Nagle documented a condition known as "congestion collapse".
 # References
 * [Source](https://hpbn.co/)
