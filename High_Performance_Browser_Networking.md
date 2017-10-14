@@ -41,5 +41,24 @@
   * Limit on the data being sent.
 * `Congestion Avoidance and Control`
   * In 1984, John Nagle documented a condition known as "congestion collapse".
+  * `Flow Control`
+  	* Prevent sender from overwhelming the receiver with data it may not be able to process.
+	* Each side of connection advertises it own receive window (`rwnd`). It is the size of available buffer space to hold incoming data.
+	* Any side can re-advertise the window size if it is not able to keep up.
+	* If it is re-advertised as zero, data is no longer sent.
+	* Each ACK packet contains the last advertised `rwnd` value.
+  * `Slow-start`
+  	* Flow control prevents the sender from overwhelming the receiver.
+	* But there was no mechanism to prevent either side from overwhelming the network.
+	* Neither side knows the available bandwidth at the beginning of connection.
+	* Also need to adapt to changing conditions of the network.
+	* Proposed by Van Jacobson and Michael Karels in 1988 along with `congestion avoidance`, `fast retransmit` and `fast recovery`.
+	* Process
+		* Server initializes a new congestion window (`cwnd`) variable per TCP connection.
+		* It initial value is a conservative system specified value.
+		* `cwnd` - Server side limit on the amount of data the sender can have in flight before receiving an ACK.
+		* cwnd is not exchanged between server and client.
+  * `Congestion Control`
+  * `Congestion Avoidance`
 # References
 * [Source](https://hpbn.co/)
