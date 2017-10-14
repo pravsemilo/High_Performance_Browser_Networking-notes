@@ -43,22 +43,37 @@
 	* In 1984, John Nagle documented a condition known as "congestion collapse".
 	* `Flow Control`
 		* Prevent sender from overwhelming the receiver with data it may not be able to process.
-	* Each side of connection advertises it own receive window (`rwnd`). It is the size of available buffer space to hold incoming data.
-	* Any side can re-advertise the window size if it is not able to keep up.
-	* If it is re-advertised as zero, data is no longer sent.
-	* Each ACK packet contains the last advertised `rwnd` value.
+		* Each side of connection advertises it own receive window (`rwnd`). It is the size of available buffer space to hold incoming data.
+		* Any side can re-advertise the window size if it is not able to keep up.
+		* If it is re-advertised as zero, data is no longer sent.
+		* Each ACK packet contains the last advertised `rwnd` value.
 	* `Slow-start`
 		* Flow control prevents the sender from overwhelming the receiver.
-	* But there was no mechanism to prevent either side from overwhelming the network.
-	* Neither side knows the available bandwidth at the beginning of connection.
-	* Also need to adapt to changing conditions of the network.
-	* Proposed by Van Jacobson and Michael Karels in 1988 along with `congestion avoidance`, `fast retransmit` and `fast recovery`.
-	* Process
-		* Server initializes a new congestion window (`cwnd`) variable per TCP connection.
-		* It initial value is a conservative system specified value.
-		* `cwnd` - Server side limit on the amount of data the sender can have in flight before receiving an ACK.
-		* cwnd is not exchanged between server and client.
-	* `Congestion Control`
+		* But there was no mechanism to prevent either side from overwhelming the network.
+		* Neither side knows the available bandwidth at the beginning of connection.
+		* Also need to adapt to changing conditions of the network.
+		* Proposed by Van Jacobson and Michael Karels in 1988 along with `congestion avoidance`, `fast retransmit` and `fast recovery`.
+		* Process
+			* Server initializes a new congestion window (`cwnd`) variable per TCP connection.
+			* It initial value is a conservative system specified value.
+			* `cwnd` - Server side limit on the amount of data the sender can have in flight before receiving an ACK.
+			* cwnd is not exchanged between server and client.
+			* Maximum amount of in flight data is minimum of rwnd and cwnd.
+			* As packets are acknowledged, we can increase the window size.
+			* Every new connection goes through this phase and hence full bandwidth cannot be utilized immediately.
 	* `Congestion Avoidance`
+		* TCP uses packet loss as a feedback mechanism.
+		* cwnd is increased for every ACK unless
+			* Exceeds the receiver's flow control window (`ssthres`). This is a system configured threshold.
+			* A packet is lost.
+		* At this point congestion avoidance algorithm is trigerred.
+			* Congestion windows is reset.
+			* Windows size grows but at a lesser rate.
+* `Bandwidth Delay Product`
+	* Considers the implication of roundtrip time between sender and receiver in determining the congestion window size.
+* `Head of Line Blocking`
+	* Each TCP packet has a unique sequence number.
+	* If one of the packets is dropped, then all subsequent packets are held in receiver's buffer until the lost packet is retransmitted and arrives at receiver.
+	* This causes a delay at application layer, which has no visibility of packet loss. This is called `head of line blocking`.
 # References
 * [Source](https://hpbn.co/)
