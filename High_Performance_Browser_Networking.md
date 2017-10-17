@@ -75,5 +75,19 @@
 	* Each TCP packet has a unique sequence number.
 	* If one of the packets is dropped, then all subsequent packets are held in receiver's buffer until the lost packet is retransmitted and arrives at receiver.
 	* This causes a delay at application layer, which has no visibility of packet loss. This is called `head of line blocking`.
+## Building Blocks of UDP
+* `UDP`
+	* User Datagram Protocol
+	* Added by Jon Postel in 1980.
+	* No delivery guarantees.
+	* No failure notifications.
+	* No ordering guarantees.
+	* Stateless
+* `Datagram` - Self contained, independent entity of data, carrying sufficient routing information.
+* `Network Address Translators (NAT)`
+* Reserved private network ranges
+	* 10.0.0.0–10.255.255.255 - 16,777,216 addresses.
+	* 172.16.0.0–172.31.255.255 - 1,048,576 addresses.
+	* 192.168.0.0–192.168.255.255 - 65,536 addresses.
 # References
 * [Source](https://hpbn.co/)
