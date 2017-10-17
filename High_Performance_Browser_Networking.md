@@ -79,15 +79,59 @@
 * `UDP`
 	* User Datagram Protocol
 	* Added by Jon Postel in 1980.
+	* RFC 768
 	* No delivery guarantees.
 	* No failure notifications.
 	* No ordering guarantees.
 	* Stateless
 * `Datagram` - Self contained, independent entity of data, carrying sufficient routing information.
 * `Network Address Translators (NAT)`
+	* RFC 1631
+	* Introduced to resolve IP depletion problem.
+	* Proposed to introduce NAT at network edges.
+	* Responsible for maintaining a table mapping local IP and port tuples to globally unique public IP and port tuples.
+	* Though proposed as a temporary solution, soon they became the de-facto solution.
 * Reserved private network ranges
 	* 10.0.0.0–10.255.255.255 - 16,777,216 addresses.
 	* 172.16.0.0–172.31.255.255 - 1,048,576 addresses.
 	* 192.168.0.0–192.168.255.255 - 65,536 addresses.
+* Connection-State Timeouts
+	* The issue with NAT wrt UDP is that routing table should be maintained.
+	* NAT relies on long living connection state. However UDP has no connection state.
+	* On the otherhand TCP has a well defined protocol, handshake, connection state and termination mechanism. These work very well with NAT.
+	* Outbound UDP is not an issue. However receiving replies requires extra work at NAT. NAT should maintain the routing information for a defined time.
+* NAT Traversal
+	* NAT imposes other issues with UDP.
+		* Client may need to know its public IP if it is being sent as part of UDP payload.
+		* NAT device should have a mapping in translation table to map the public port of destination with local port.
+	* Solutions proposed
+		* `Session Traversal Utilites for NAT (STUN)`
+		* `Traversla Using Relays around NAT (TURN)`
+		* `Interactive Connectivity Establishment (ICE)`
+* `STUN`
+	* Allows to discover a NAT on the network.
+	* Allows to query the public IP and port tuple for current connection.
+	* Application sends a bind request to a STUN server. STUN server replies with a response containing the public IP and port tuple.
+	* Support for keepalive pings for long living routing entries.
+	* RFC 5389.
+* `TURN`
+	* Addresses issues in STUN like
+		* Not suitable for all network topologies.
+		* Firewall blocking.
+	* Uses TCP as a fallback.
+## Transport Layer Security (TLS)
+* `SSL`
+	* Originally developed at Netscape.
+	* SSL 2.0 was first public release.
+	* SSL 3.0 was released later.
+* `TLS`
+	* Since SSL was proprietary, IETF standardized SSL as TLS.
+	* TLS 1.0 was released on January 1999. RFC 2246.
+	* TLS 1.1 - April 2006
+	* TLS 1.2 - August 2008. RFC 5246.
+	* Services offerred
+		* Encryption
+		* Authentication
+		* Integrity
 # References
 * [Source](https://hpbn.co/)
