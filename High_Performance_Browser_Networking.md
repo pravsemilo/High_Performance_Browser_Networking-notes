@@ -166,5 +166,31 @@
 		* Client indicates that it support session tickets.
 		* Server includes a `New Session Ticket` record. This contains session specific data encrypted with a secret key.
 		* Session ticket is stored by client and sent as part of `Session Ticket` extension in ClientHello.
+# Performance of Wireless Networks
+## Introduction to Wireless Networks
+## WiFi
+## Mobile Networks
+## Optimizing for Mobile Networks
+# HTTP
+## Brief History of HTTP
+* `HTTP 0.9`
+	* One line protocol
+	* Tim Berners Lee
+	* Connection per request
+	* Initial Goals
+		* File transfer
+		* Index search
+		* Redirect
+* `HTTP 1.0`
+	* Header support
+	* Media type negotiation
+* `HTTP 1.1`
+	* RFC 2068
+	* RFC 2616
+	* Keepalive connections
+	* Request pipelining
+	* Transfer encoding & chunking support
+* `HTTP 2.0`
+	* Lower latency and higher throughput
 # References
 * [Source](https://hpbn.co/)
