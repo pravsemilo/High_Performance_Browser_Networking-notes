@@ -195,5 +195,9 @@
 ## Primer on Web Performance
 ## HTTP/1.x
 ## HTTP/2
+## Optimizing Application Delivery
+# Browser APIs and Protocols
+## Primer on Browser Networking
+## XMLHttpRequest
 # References
 * [Source](https://hpbn.co/)
