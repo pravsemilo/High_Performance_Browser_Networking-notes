@@ -173,7 +173,7 @@
 ## Optimizing for Mobile Networks
 # HTTP
 ## Brief History of HTTP
-* `HTTP 0.9`
+* `HTTP/0.9`
 	* One line protocol
 	* Tim Berners Lee
 	* Connection per request
@@ -181,16 +181,19 @@
 		* File transfer
 		* Index search
 		* Redirect
-* `HTTP 1.0`
+* `HTTP/1.0`
 	* Header support
 	* Media type negotiation
-* `HTTP 1.1`
+* `HTTP/1.1`
 	* RFC 2068
 	* RFC 2616
 	* Keepalive connections
 	* Request pipelining
 	* Transfer encoding & chunking support
-* `HTTP 2.0`
+* `HTTP/2.0`
 	* Lower latency and higher throughput
+## Primer on Web Performance
+## HTTP/1.x
+## HTTP/2
 # References
 * [Source](https://hpbn.co/)
