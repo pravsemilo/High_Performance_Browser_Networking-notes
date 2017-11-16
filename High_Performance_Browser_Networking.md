@@ -199,5 +199,8 @@
 # Browser APIs and Protocols
 ## Primer on Browser Networking
 ## XMLHttpRequest
+## Server-Sent Events
+## WebSocket
+## WebRTC
 # References
 * [Source](https://hpbn.co/)
